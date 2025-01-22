@@ -2,7 +2,9 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 // import { fetchTodos } from "./redux/ApiReducer";
 import { counter, zero } from "./Store/State.Reducer";
-// import { useEffect } from "react";
+import { useEffect } from "react";
+
+import apiClient from "./Api/apiClient";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,6 +14,12 @@ function App() {
   function handleClick() {
     dispatch(counter());
   }
+
+  useEffect(() => {
+    apiClient.get("/posts").then((response) => {
+      console.log(response.data);
+    });
+  }, []);
   return (
     <div className="flex justify-center gap-4 flex-col">
       <h1 className="text-3xl text-center font-bold underline text-red-500">
