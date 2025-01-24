@@ -10,11 +10,10 @@ import { persistStore } from "redux-persist";
 let persister = persistStore(store);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persister}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persister}>
+      <App />
+    </PersistGate>
+  </Provider>
+  // </StrictMode>
 );

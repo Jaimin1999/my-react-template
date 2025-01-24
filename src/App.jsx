@@ -1,10 +1,21 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 // import { fetchTodos } from "./redux/ApiReducer";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+
 import { counter, zero } from "./Store/State.Reducer";
 import { useEffect } from "react";
 
 import apiClient from "./Api/apiClient";
+import Home from "./Routes/Private/Home";
+import Login from "./Routes/Public/Login";
+import About from "./Routes/Public/About";
+import Protected from "./Routes/Protected";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +45,18 @@ function App() {
       >
         Zero
       </button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Protected Component={Home} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
